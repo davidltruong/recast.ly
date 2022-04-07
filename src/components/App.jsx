@@ -10,25 +10,44 @@ var getVideoData = function() {
 
 var video = getVideoData();
 
+class App extends React.Component {
+  constructor() {
+    super();
+    // this.state = state;
+  }
+
+  clickVideo(e) {
+    console.log(e);
+
+  }
+
+  render() {
+    return (
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em><Search /></em></h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <div><h5><em><VideoPlayer video={video} /></em></h5></div>
+          </div>
+          <div className="col-md-5">
+            <div><VideoList videos={exampleVideoData} clicked={this.clickVideo}/></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
 
-var App = (props) => (
-  <div>
-    <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em><Search /></em></h5></div>
-      </div>
-    </nav>
-    <div className="row">
-      <div className="col-md-7">
-        <div><h5><em><VideoPlayer video={video} /></em></h5></div>
-      </div>
-      <div className="col-md-5">
-        <div><VideoList data={props.data}/></div>
-      </div>
-    </div>
-  </div>
-);
+
+
+  changeVideo() {
+    document.getElementsByClassName('.video-list-entry-title').attr('title', 'Item Added');
+  }
+}
 
 
 
