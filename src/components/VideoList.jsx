@@ -8,9 +8,9 @@ var getVideoData = function() {
 
 var VideoList = (props) => (
   <div className="video-list">
-    {props.videos.map((v) => {
+    {props.videos.map((v, index) => {
       return (
-        <VideoListEntry video={v} clickVideo={props.clickVideo}/>
+        <VideoListEntry video={v} clickVideo={props.clickVideo} key={JSON.stringify(index)}/>
       );
     }
     )}

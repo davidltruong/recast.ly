@@ -14,17 +14,25 @@ var video = getVideoData();
 
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      videos: [],
-      video: null,
+      videos: exampleVideoData,
+      video: exampleVideoData[0],
       input: ''
     };
     this.clickVideo = this.clickVideo.bind(this);
     this.inputHandler = this.inputHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    var that = this;
+    this.props.searchYoutube('react', function (data) {
+      that.setState({videos: data, video: data[0]});
+    });
+  }
+
   inputHandler(e) {
     var query = e.target.value.toLowerCase();
     this.setState({input: query});
