@@ -2,6 +2,8 @@ import Search from './Search.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYouTube.js';
+
 
 var getVideoData = function() {
   var randomIdx = Math.floor(Math.random() * exampleVideoData.length);
@@ -10,15 +12,34 @@ var getVideoData = function() {
 
 var video = getVideoData();
 
+
 class App extends React.Component {
   constructor() {
     super();
-    // this.state = state;
+    this.state = {
+      videos: [],
+      video: null,
+      input: ''
+    };
+    this.clickVideo = this.clickVideo.bind(this);
+    this.inputHandler = this.inputHandler.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  inputHandler(e) {
+    var query = e.target.value.toLowerCase();
+    this.setState({input: query});
+    // searchYouTube(query);
+
+  }
+
+  handleSubmit() {
+    var q = this.state.input;
+    var test = searchYouTube(q);
+    console.log(test);
   }
 
   clickVideo(e) {
-    console.log(e);
-
+    this.setState({video: e});
   }
 
   render() {
@@ -26,15 +47,15 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em><Search /></em></h5></div>
+            <div><h5><em><Search query={this.inputHandler} sub={this.handleSubmit}/></em></h5></div>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><h5><em><VideoPlayer video={video} /></em></h5></div>
+            <div><h5><em><VideoPlayer video={this.state.video} /></em></h5></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={exampleVideoData} clicked={this.clickVideo}/></div>
+            <div><VideoList videos={this.state.videos} clickVideo={this.clickVideo}/></div>
           </div>
         </div>
       </div>
