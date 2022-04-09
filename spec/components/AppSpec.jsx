@@ -1,4 +1,5 @@
 import App from '../../src/components/App.js';
+import searchYouTube from '../../src/lib/searchYouTube.js';
 
 describe('App', function() {
   var {
@@ -12,7 +13,7 @@ describe('App', function() {
 
   beforeEach(function() {
     app = renderIntoDocument(
-      <App />
+      <App searchYouTube={searchYouTube}/>
     );
   });
 
@@ -51,13 +52,12 @@ describe('App', function() {
   describe('when rendering live data from YouTube', function() {
     beforeEach(function() {
       app = renderIntoDocument(
-        <App />
+        <App searchYouTube={searchYouTube}/>
       );
     });
 
     it('should load live data when app is initialized', function() {
       var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
-
       videoEntryTitleElements.forEach((videoEntryTitle, i) =>
         expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title)
       );
