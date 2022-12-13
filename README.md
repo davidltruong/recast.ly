@@ -24,7 +24,7 @@ This project uses [node](http://nodejs.org) and [npm](https://npmjs.com).
 
 ## Usage
 
-This project is to showcase the use of subclassing of the initial class dancer. Each type of subclass dancer will inherit methods form the superclass but also have distinct personalities.
+This project is to showcase the use of React. Recastly is a Youtube clone website that uses the youtube API to show videos on the clone site. You will be able to watch youtube videos, search for any videos on youtube, and click on related videos to be redirected to that video page.
 
 ![alt text](https://github.com/davidltruong/recast.ly/blob/master/screenshot.png?raw=true)
 
